@@ -1,0 +1,50 @@
+body {
+  background-color: #F9F5E3;
+  font-family: 'Nunito', sans-serif;
+  color: #0A0A0A;
+  text-align: center;
+  padding: 40px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #FFFFFF;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+textarea,
+input[type="number"] {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0 20px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.cta-button {
+  background-color: #185D4A;
+  color: #FFFFFF;
+  padding: 15px 30px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.cta-button:hover {
+  background-color: #0F563C;
+}
+
+.response-box {
+  margin-top: 30px;
+  background-color: #84D2C1;
+  padding: 20px;
+  border-radius: 8px;
+  color: #0A0A0A;
+}

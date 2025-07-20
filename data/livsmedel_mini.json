@@ -1,0 +1,142 @@
+[
+  {
+    "namn": "Ris, kokt",
+    "kolhydrater_g": 28,
+    "protein_g": 2.4,
+    "fett_g": 0.3,
+    "gi": "högt"
+  },
+  {
+    "namn": "Potatis, kokt",
+    "kolhydrater_g": 17,
+    "protein_g": 1.6,
+    "fett_g": 0.1,
+    "gi": "medel"
+  },
+  {
+    "namn": "Pasta, kokt",
+    "kolhydrater_g": 25,
+    "protein_g": 4.8,
+    "fett_g": 0.9,
+    "gi": "medel"
+  },
+  {
+    "namn": "Banan",
+    "kolhydrater_g": 20,
+    "protein_g": 1.1,
+    "fett_g": 0.3,
+    "gi": "medel"
+  },
+  {
+    "namn": "Äpple",
+    "kolhydrater_g": 13,
+    "protein_g": 0.3,
+    "fett_g": 0.2,
+    "gi": "lågt"
+  },
+  {
+    "namn": "Morot, rå",
+    "kolhydrater_g": 7,
+    "protein_g": 0.7,
+    "fett_g": 0.2,
+    "gi": "lågt"
+  },
+  {
+    "namn": "Havregryn, kokt",
+    "kolhydrater_g": 12,
+    "protein_g": 2.5,
+    "fett_g": 2.4,
+    "gi": "lågt"
+  },
+  {
+    "namn": "Fullkornsbröd",
+    "kolhydrater_g": 40,
+    "protein_g": 8.0,
+    "fett_g": 2.5,
+    "gi": "medel"
+  },
+  {
+    "namn": "Vitt bröd",
+    "kolhydrater_g": 45,
+    "protein_g": 7.5,
+    "fett_g": 1.5,
+    "gi": "högt"
+  },
+  {
+    "namn": "Quinoa, kokt",
+    "kolhydrater_g": 21,
+    "protein_g": 4.1,
+    "fett_g": 1.9,
+    "gi": "lågt"
+  },
+  {
+    "namn": "Linser, kokta",
+    "kolhydrater_g": 16,
+    "protein_g": 9.0,
+    "fett_g": 0.4,
+    "gi": "lågt"
+  },
+  {
+    "namn": "Bönor, kokta",
+    "kolhydrater_g": 13,
+    "protein_g": 8.0,
+    "fett_g": 0.5,
+    "gi": "lågt"
+  },
+  {
+    "namn": "Yoghurt naturell 3%",
+    "kolhydrater_g": 4,
+    "protein_g": 3.5,
+    "fett_g": 3.0,
+    "gi": "lågt"
+  },
+  {
+    "namn": "Apelsin",
+    "kolhydrater_g": 11,
+    "protein_g": 0.9,
+    "fett_g": 0.1,
+    "gi": "lågt"
+  },
+  {
+    "namn": "Gurka",
+    "kolhydrater_g": 2,
+    "protein_g": 0.3,
+    "fett_g": 0.1,
+    "gi": "lågt"
+  },
+  {
+    "namn": "Tomat",
+    "kolhydrater_g": 3,
+    "protein_g": 0.7,
+    "fett_g": 0.2,
+    "gi": "lågt"
+  },
+  {
+    "namn": "Kycklingfilé, stekt",
+    "kolhydrater_g": 0,
+    "protein_g": 31,
+    "fett_g": 3.6,
+    "gi": "lågt"
+  },
+  {
+    "namn": "Lax, stekt",
+    "kolhydrater_g": 0,
+    "protein_g": 25,
+    "fett_g": 12,
+    "gi": "lågt"
+  },
+  {
+    "namn": "Ägg, kokt",
+    "kolhydrater_g": 1,
+    "protein_g": 13,
+    "fett_g": 11,
+    "gi": "lågt"
+  },
+  {
+    "namn": "Mjölk 1,5%",
+    "kolhydrater_g": 5,
+    "protein_g": 3.4,
+    "fett_g": 1.5,
+    "gi": "medel"
+  }
+]
