@@ -1,7 +1,7 @@
 body {
-  background-color: #F9F5E3;
-  font-family: 'Nunito', sans-serif;
-  color: #0A0A0A;
+  background-color: #f9f5e3;
+  font-family: "Nunito", sans-serif;
+  color: #0a0a0a;
   text-align: center;
   padding: 40px;
 }
@@ -9,7 +9,7 @@ body {
 .container {
   max-width: 600px;
   margin: 0 auto;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -26,8 +26,8 @@ input[type="number"] {
 }
 
 .cta-button {
-  background-color: #185D4A;
-  color: #FFFFFF;
+  background-color: #185d4a;
+  color: #ffffff;
   padding: 15px 30px;
   font-size: 18px;
   font-weight: bold;
@@ -38,13 +38,17 @@ input[type="number"] {
 }
 
 .cta-button:hover {
-  background-color: #0F563C;
+  background-color: #0f563c;
 }
 
 .response-box {
   margin-top: 30px;
-  background-color: #84D2C1;
+  background-color: #84d2c1;
   padding: 20px;
   border-radius: 8px;
-  color: #0A0A0A;
+  color: #0a0a0a;
+}
+
+li {
+  list-style: none;
 }

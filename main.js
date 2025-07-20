@@ -1,5 +1,14 @@
 import { foodAliases } from './food-aliases.js';
 
+const swapSuggestions = {
+  "ris": "broccoli",
+  "potatis": "blomkål",
+  "pasta": "zucchini (zoodles)",
+  "bröd": "ägg",
+  "banan": "bär",
+  // Add more as needed
+};
+
 let foodDatabase = [];
 
 fetch("data/livsmedel_mini.json")
@@ -25,6 +34,13 @@ function analyzeMeal() {
   }
 
   let mealItems = [];
+  let riskyItems = [];
+  let matchedItems = [];
+  let unknownItems = [];
+  let totalCarbs = 0;
+  let totalProtein = 0;
+  let totalFat = 0;
+  let analysisOutput = "";
 
   meal.split(',').map(w => w.trim().toLowerCase()).filter(Boolean).forEach(entry => {
     const parts = entry.split(" ").filter(Boolean);
@@ -37,22 +53,14 @@ function analyzeMeal() {
     if (aliases && Array.isArray(aliases)) {
       const sharedGram = userSpecified ? gram / aliases.length : 100;
       aliases.forEach(term => {
-        mealItems.push({ word: term, gram: sharedGram, userSpecified });
+        mealItems.push({ word: term, gram: sharedGram, userSpecified, baseText });
       });
     } else {
-      mealItems.push({ word: baseText, gram: userSpecified ? gram : 100, userSpecified });
+      mealItems.push({ word: baseText, gram: userSpecified ? gram : 100, userSpecified, baseText });
     }
   });
 
-  let riskyItems = [];
-  let matchedItems = [];
-  let unknownItems = [];
-  let totalCarbs = 0;
-  let totalProtein = 0;
-  let totalFat = 0;
-  let analysisOutput = "";
-
-  mealItems.forEach(({ word, gram, userSpecified }) => {
+  mealItems.forEach(({ word, gram, userSpecified, baseText }) => {
     let match = null;
 
     if (foodAliases[word]) {
@@ -82,29 +90,57 @@ function analyzeMeal() {
 
       matchedItems.push({ namn: match.namn, kolhydrater: carbs, protein, fett: fat, gi: match.gi, gram, userSpecified });
 
-      if (carbs > 20) {
-        riskyItems.push({ namn: match.namn, kolhydrater: carbs });
-      }
+      const carbRecommendation = 30; // Du kan justera denna
+
+if (
+  carbs > 20 ||
+  Object.keys(swapSuggestions).some(key => match.namn.toLowerCase().includes(key)) ||
+  carbs > carbRecommendation
+) {
+  riskyItems.push({
+    namn: match.namn,
+    kolhydrater: carbs,
+    flaggaStorMängd: carbs > carbRecommendation
+  });
+}
     } else {
-      unknownItems.push(word);
-      console.warn("⚠️ Hittade inget för:", word);
-    }
+  // Lägg bara till om baseText INTE redan finns i matchedItems
+  if (!matchedItems.some(item => item.namn.toLowerCase().includes(baseText))) {
+    unknownItems.push(baseText);
+    console.warn("⚠️ Hittade inget för:", word);
+  }
+}
   });
 
-  if (glucose > 8.5) {
-    analysisOutput += `<p>Ditt blodsockervärde <strong>${glucose} mmol/L</strong> är något högt efter måltiden.</p>`;
-    if (riskyItems.length > 0) {
-      analysisOutput += `<p>Exempel på kolhydratrika delar i måltiden:</p><ul>`;
-      riskyItems.forEach(item => {
-        analysisOutput += `<li>${item.namn} – ${item.kolhydrater.toFixed(1)} g kolhydrater</li>`;
-      });
-      analysisOutput += `</ul><p>Försök byta ut eller minska dessa för att påverka ditt blodsocker positivt.</p>`;
-    } else {
-      analysisOutput += `<p>Vi kunde inte identifiera kolhydratrika livsmedel. Se över portionsstorlek eller fettinnehåll.</p>`;
-    }
-  } else {
-    analysisOutput += `<p>Ditt blodsockervärde <strong>${glucose} mmol/L</strong> är inom god nivå efter denna måltid. Bra jobbat!</p>`;
+if (glucose > 8.5) {
+  analysisOutput += `<p style="color:red;">Ditt blodsockervärde <strong>${glucose} mmol/L</strong> är högt efter måltiden.</p>`;
+  if (riskyItems.length > 0) {
+    analysisOutput += `<p>Exempel på kolhydratrika delar i måltiden:</p><ul>`;
+    riskyItems.forEach(item => {
+  analysisOutput += `<li>${item.namn} – ${item.kolhydrater.toFixed(1)} g kolhydrater`;
+  if (item.flaggaStorMängd) {
+    analysisOutput += `<br><span style="color:red;"><em>OBS! Stor mängd kolhydrater – över rekommenderad portionsstorlek.</em></span>`;
   }
+  const namnLower = item.namn.toLowerCase();
+  let lowerCarb = null;
+  for (const key in swapSuggestions) {
+    if (namnLower.includes(key)) {
+      lowerCarb = swapSuggestions[key];
+      break;
+    }
+  }
+  if (lowerCarb) {
+    analysisOutput += ` <br><p style="color:green;"><em>Tips: Byt ut ${item.namn} mot ${lowerCarb} för lägre blodsockerpåverkan.</em></p>`;
+  }
+  analysisOutput += `</li>`;
+});
+    analysisOutput += `</ul>`;
+  }
+} else if (glucose >= 4 && glucose <= 8.5) {
+  analysisOutput += `<p style="color:green;"><strong>Bra jobbat!</strong> Din måltid var bra balanserad för ditt blodsocker, fortsätt så!</p>`;
+} else if (glucose < 4) {
+  analysisOutput += `<p style="color:orange;"><strong>Observera:</strong> Ditt blodsockervärde är lågt. Kontrollera med vården om du känner dig osäker.</p>`;
+}
 
   if (matchedItems.length > 0) {
     analysisOutput += `<h3>Makronutrientöversikt</h3><ul>`;
